@@ -1,0 +1,104 @@
+#ddev-generated
+# If you remove the ddev-generated line above you
+# are responsible for maintaining this file. DDEV will not then
+# update it, for example if you add `additional_hostnames`, etc.
+
+http:
+  routers:
+    module-developer-guide-demo-site-selenium-chrome-7900-http:
+      entrypoints:
+        - http-7910
+      rule: HostRegexp(`^module-developer-guide-demo-site\.ddev\.site$`)
+      
+      service: "module-developer-guide-demo-site-selenium-chrome-7900"
+      ruleSyntax: v3
+      tls: false
+      # middlewares:
+      #   - "module-developer-guide-demo-site-redirectHttps"
+    module-developer-guide-demo-site-web-80-http:
+      entrypoints:
+        - http-80
+      rule: HostRegexp(`^module-developer-guide-demo-site\.ddev\.site$`)
+      
+      service: "module-developer-guide-demo-site-web-80"
+      ruleSyntax: v3
+      tls: false
+      # middlewares:
+      #   - "module-developer-guide-demo-site-redirectHttps"
+    module-developer-guide-demo-site-web-8025-http:
+      entrypoints:
+        - http-8025
+      rule: HostRegexp(`^module-developer-guide-demo-site\.ddev\.site$`)
+      
+      service: "module-developer-guide-demo-site-web-8025"
+      ruleSyntax: v3
+      tls: false
+      # middlewares:
+      #   - "module-developer-guide-demo-site-redirectHttps"
+    
+    
+    module-developer-guide-demo-site-selenium-chrome-7900-https:
+      entrypoints:
+        - http-7900
+      rule: HostRegexp(`^module-developer-guide-demo-site\.ddev\.site$`)
+      
+      service: "module-developer-guide-demo-site-selenium-chrome-7900"
+      ruleSyntax: v3
+      
+      tls: true
+      
+    
+    
+    module-developer-guide-demo-site-web-80-https:
+      entrypoints:
+        - http-443
+      rule: HostRegexp(`^module-developer-guide-demo-site\.ddev\.site$`)
+      
+      service: "module-developer-guide-demo-site-web-80"
+      ruleSyntax: v3
+      
+      tls: true
+      
+    module-developer-guide-demo-site-web-8025-https:
+      entrypoints:
+        - http-8026
+      rule: HostRegexp(`^module-developer-guide-demo-site\.ddev\.site$`)
+      
+      service: "module-developer-guide-demo-site-web-8025"
+      ruleSyntax: v3
+      
+      tls: true
+      
+    
+
+  middlewares:
+    module-developer-guide-demo-site-redirectHttps:
+      redirectScheme:
+        scheme: https
+        permanent: true
+
+  services:
+    module-developer-guide-demo-site-selenium-chrome-7900:
+      loadbalancer:
+        servers:
+          - url: http://ddev-module-developer-guide-demo-site-selenium-chrome:7900
+        
+    
+    module-developer-guide-demo-site-web-80:
+      loadbalancer:
+        servers:
+          - url: http://ddev-module-developer-guide-demo-site-web:80
+        
+    module-developer-guide-demo-site-web-8025:
+      loadbalancer:
+        servers:
+          - url: http://ddev-module-developer-guide-demo-site-web:8025
+        
+    
+    
+    
+
+tls:
+  certificates:
+    - certFile: /mnt/ddev-global-cache/traefik/certs/module-developer-guide-demo-site.crt
+      keyFile: /mnt/ddev-global-cache/traefik/certs/module-developer-guide-demo-site.key
