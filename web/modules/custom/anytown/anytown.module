@@ -1,0 +1,25 @@
+<?php
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ *
+ * Displays help and module information.
+ *
+ * @param  string  $route_name
+ *   The current route name.
+ * @param  \Drupal\Core\Routing\RouteMatchInterface  $route_match
+ *   The current route match.
+ */ function anytown_help($route_name, RouteMatchInterface $route_match)
+{
+    if ($route_name === 'help.page.anytown') {
+        $currentUser = \Drupal::currentUser();
+        // We can also use the following code to get the current user.
+        // $currentUser = \Drupal::service('current_user');
+        $name = $currentUser->getDisplayName();
+
+        return '<p>'.\Drupal::translation()->translate('Hello @name, Help for anytown module',
+            ['@name' => $name]).'</p>';
+    }
+}
